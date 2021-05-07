@@ -10,7 +10,7 @@
     <version>1.0</version>
 
     <properties>
-        <clickhouse.version>0.1.55</clickhouse.version>
+        <clickhouse.version>0.1.50</clickhouse.version>
         <presto.version>0.245.1</presto.version>
     </properties>
 

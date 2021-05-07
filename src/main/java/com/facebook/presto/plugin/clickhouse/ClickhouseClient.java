@@ -15,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.facebook.presto.plugin.jdbc.DriverConnectionFactory.basicConnectionProperties;
 import static com.facebook.presto.plugin.jdbc.JdbcErrorCode.JDBC_ERROR;
 import static com.facebook.presto.spi.StandardErrorCode.ALREADY_EXISTS;
 import static com.facebook.presto.spi.StandardErrorCode.NOT_SUPPORTED;
@@ -26,11 +25,7 @@ public class ClickhouseClient extends BaseJdbcClient {
 
     @Inject
     public ClickhouseClient(JdbcConnectorId connectorId, BaseJdbcConfig config) {
-        super(connectorId, config, "\"", connectionFactory(config));
-    }
-
-    private static ConnectionFactory connectionFactory(BaseJdbcConfig config) {
-        return new DriverConnectionFactory(new ClickHouseDriver(), config.getConnectionUrl(), basicConnectionProperties(config));
+        super(connectorId, config, "\"", new DriverConnectionFactory(new ClickHouseDriver(), config));
     }
 
     @Override

@@ -87,9 +87,7 @@ public class ClickhouseQueryBuilder
         }
 
         sql.append(" FROM ");
-        if (!isNullOrEmpty(catalog)) {
-            sql.append(quote(catalog)).append('.');
-        }
+
         if (!isNullOrEmpty(schema)) {
             sql.append(quote(schema)).append('.');
         }
@@ -111,7 +109,6 @@ public class ClickhouseQueryBuilder
             sql.append(" WHERE ")
                     .append(Joiner.on(" AND ").join(clauses));
         }
-
         PreparedStatement statement = client.getPreparedStatement(connection, sql.toString());
 
         for (int i = 0; i < accumulator.size(); i++) {
